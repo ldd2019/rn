@@ -1,8 +1,10 @@
 import React from 'react'
-import {View, Text, Button,ScrollView} from 'react-native'
+import {View, Text, Button,ScrollView,Dimensions, Image} from 'react-native'
 import {StyleSheet} from "react-native"
 import { AuthSession } from 'expo';
 import Swiper from 'react-native-swiper';
+
+const {height,width} =  Dimensions.get('window');
 
 export default class Home extends React.Component{
     render(){
