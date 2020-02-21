@@ -1,8 +1,9 @@
 import React from 'react'
-import {View, Text, Button,Dimensions} from 'react-native'
+import {View, Text, Button,Dimensions,Image} from 'react-native'
 import {StyleSheet} from "react-native"
 import { AuthSession } from 'expo';
 import Swiper from 'react-native-swiper';
+
 
 const {width} =  Dimensions.get('window');
 
