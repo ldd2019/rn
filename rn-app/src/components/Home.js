@@ -4,7 +4,8 @@ import {StyleSheet} from "react-native"
 import { AuthSession } from 'expo';
 import Swiper from 'react-native-swiper';
 
-const {height,width} =  Dimensions.get('window');
+
+const {width} =  Dimensions.get('window');
 
 export default class Home extends React.Component{
     render(){
@@ -12,12 +13,11 @@ export default class Home extends React.Component{
             <ScrollView>
             <View>
                 <Text style={[styles.title]}>吉大一院</Text>
-                <Text>Home</Text>
                 <Swiper
                     style={styles.wrapper}
                     height={width*40/75}
                     showsButtons={false}
-                    autoplay={true}
+                    autoplay={true}//是否显示左右翻页按钮
                     paginationStyle={styles.paginationStyle}
                     dotStyle={styles.dotStyle}
                     activeDotStyle={styles.activeDotStyle}
@@ -27,7 +27,7 @@ export default class Home extends React.Component{
                     <Image source={require('../img/3.jpg')} style={styles.bannerImg} />
                     <Image source={require('../img/4.jpg')} style={styles.bannerImg} />
                 </Swiper>
-
+                <Text>Home</Text>
             </View>
             </ScrollView>
         )
