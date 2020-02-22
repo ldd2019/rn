@@ -1,27 +1,19 @@
-// import { createStackNavigator } from 'react-navigation-stack'
-// import Home from "./Home"
+import React from 'react'
+import {View, Text, Button,ScrollView,Dimensions, Image} from 'react-native'
+import {StyleSheet} from "react-native"
 
-// const StackNavigator = createStackNavigator(//屏幕上方导航栏
-//     {
-//         Home: {
-//             screen: Home,
-//             navigationOptions: {
-//                 title: "吉大一院",
-//                 headerTitleStyle:{
-//                     fontSize:20,
-//                     color:"#fff"
-//                 },
-//                 headerStyle:{
-//                     height:45,
-//                     color:"#fff",
-//                     backgroundColor:"#00a0e9"
-//                 }
-//             }
-//         }
-//     },
-//     {
-//         initialRouteName: "Home",//默认路由，第一次跳转的时候
-//         headerLayoutPreset: "center"
-//     },
 
-// )
+const {width} =  Dimensions.get('window');
+
+export default class Home extends React.Component{
+    render(){
+        return (
+            <View>
+                <Text>title页面</Text>
+                <Text>title页面</Text>
+            </View>
+        )
+    }
+}
+
+

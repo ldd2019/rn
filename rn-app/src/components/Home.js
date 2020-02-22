@@ -9,10 +9,11 @@ const {width} =  Dimensions.get('window');
 
 export default class Home extends React.Component{
     render(){
+        const {navigation} = this.props
         return (
             <ScrollView>
             <View>
-                <Text style={[styles.title]}>吉大一院</Text>
+                {/* <Text style={[styles.title]}>吉大一院</Text> */}
                 <Swiper
                     style={styles.wrapper}
                     height={width*40/75}
@@ -28,6 +29,7 @@ export default class Home extends React.Component{
                     <Image source={require('../img/4.jpg')} style={styles.bannerImg} />
                 </Swiper>
                 <Text>Home</Text>
+                <Text style={{color:'#41affc'}} onPress={()=> navigation.navigate('TitlePage')}>点我跳转titlePage详情</Text>
             </View>
             </ScrollView>
         )

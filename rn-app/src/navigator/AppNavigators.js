@@ -1,12 +1,15 @@
 import React from 'react'
+import { StyleSheet, View } from "react-native"
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import {createAppContainer} from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+
 import News from "../components/News"
 import Home from "../components/Home";
 import My from "../components/My";
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import {StyleSheet} from "react-native"
+import TitlePage from "../components/Title"
+import WelcomePage from "../components/WelcomePage"
 
 const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
     {
@@ -14,8 +17,8 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
             screen: Home,//展示的页面
             navigationOptions: {//填写属性
                 title: "首页",
-                tabBarIcon:({ focused, horizontal, tintColor })=>{
-                    return <FontAwesome5 name={'home'} style={[{color:tintColor},styles.icon]}/>
+                tabBarIcon: ({ focused, horizontal, tintColor }) => {
+                    return <FontAwesome5 name={'home'} style={[{ color: tintColor }, styles.icon]} />
                 }
             }
         },
@@ -23,8 +26,8 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
             screen: News,
             navigationOptions: {
                 title: "消息",
-                tabBarIcon:({ focused, horizontal, tintColor })=>{
-                    return <FontAwesome5 name={'comment-alt'} style={[{color:tintColor},styles.icon]}/>
+                tabBarIcon: ({ focused, horizontal, tintColor }) => {
+                    return <FontAwesome5 name={'comment-alt'} style={[{ color: tintColor }, styles.icon]} />
                 }
             }
         },
@@ -32,51 +35,76 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
             screen: My,
             navigationOptions: {
                 title: "我的",
-                tabBarIcon:({focused,horizontal,tintColor})=>{
-                    return <FontAwesome5 name={'user'} style={[{color:tintColor},styles.icon]}/>
+                tabBarIcon: ({ focused, horizontal, tintColor }) => {
+                    return <FontAwesome5 name={'user'} style={[{ color: tintColor }, styles.icon]} />
                 }
             }
         }
     },
     {
-        tabBarOptions:{
-            activeTintColor:"#00a0e9",
-            style:{
-                height:45
+        tabBarOptions: {
+            activeTintColor: "#00a0e9",
+            style: {
+                height: 45
             }
-        }
+        },
     }
 )
 
-// const StackNavigator = createStackNavigator(//屏幕上方导航栏
-//     {
-//         Home: {
-//             screen: BottomNavigator,
-//             navigationOptions: {
-//                 title: "吉大一院",
-//                 headerTitleStyle:{
-//                     fontSize:20,
-//                     color:"#fff"
-//                 },
-//                 headerStyle:{
-//                     height:45,
-//                     color:"#fff",
-//                     backgroundColor:"#00a0e9"
-//                 }
-//             }
-//         }
-//     },
-//     {
-//         initialRouteName: "Home",//默认路由，第一次跳转的时候
-//         headerLayoutPreset: "center"
-//     },
+BottomNavigator.navigationOptions = ({ navigation }) => {
+    const { routeName } = navigation.state.routes[navigation.state.index];
+    // You can do whatever you like here to pick the title based on the route name
 
-// )
+    if (routeName === 'Home') {
+        return {
+            title: '吉大一院',
+            headerTintColor: '#fff',
+            headerStyle: {
+                backgroundColor: '#41affc',
+            },
+        }
+    } else {
+        return {
+            title: routeName,
+            // header: null,
+        }
+    }
+
+};
+
+// 欢迎页
+const InitNavigator = createStackNavigator({
+    WelcomePage: {
+        screen: WelcomePage,
+        navigationOptions: {
+            headerShown: false
+        }
+    }
+})
+
+const TotalNavigator = createStackNavigator({
+    Main: BottomNavigator,
+    TitlePage: {
+        screen: TitlePage,
+        navigationOptions: {
+            title: 'title的路由标题'
+            // header: null
+        }
+    },
+    // NOTE: 其余路由在这里注册 
+
+})
+
+const RootNavigator = createSwitchNavigator({
+    Init: InitNavigator,
+    Total: TotalNavigator,
+})
+
 
 const styles = StyleSheet.create({
     icon: {
-      fontSize: 16,
+        fontSize: 16,
     },
 });
 
-export default createAppContainer(BottomNavigator)
+export default createAppContainer(RootNavigator)
