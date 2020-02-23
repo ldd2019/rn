@@ -43,7 +43,7 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
     },
     {
         tabBarOptions: {
-            activeTintColor: "#00a0e9",
+            activeTintColor: "#83a7f9",
             style: {
                 height: 45
             }
@@ -57,10 +57,10 @@ BottomNavigator.navigationOptions = ({ navigation }) => {
 
     if (routeName === 'Home') {
         return {
-            title: '吉大一院',
+            title: '智能导诊',
             headerTintColor: '#fff',
             headerStyle: {
-                backgroundColor: '#41affc',
+                backgroundColor: '#83a7f9',
             },
         }
     } else {
@@ -82,7 +82,7 @@ const InitNavigator = createStackNavigator({
     }
 })
 
-const TotalNavigator = createStackNavigator({
+const TotalNavigator = createStackNavigator({//头部导航栏设定
     Main: BottomNavigator,
     TitlePage: {
         screen: TitlePage,
