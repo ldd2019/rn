@@ -72,19 +72,21 @@ BottomNavigator.navigationOptions = ({ navigation }) => {
 
 };
 
-// 欢迎页
+// 欢迎页   //欢迎页用stack？？//其他的路由管理方式不是路由栈的方式
 const InitNavigator = createStackNavigator({
-    WelcomePage: {
+        WelcomePage: {
         screen: WelcomePage,
         navigationOptions: {
             headerShown: false
         }
     }
 })
-
+//键值对 前面就是路由的名字 后面是这个路由下的组件和其他配置信息
+//因为只有第一个注册的路由是没有返回键的 其他后面不管第二还是第三的路由 顺序都是有返回键的
+//所以titlepage有返回键
 const TotalNavigator = createStackNavigator({//头部导航栏设定
-    Main: BottomNavigator,
-    TitlePage: {
+    Main: BottomNavigator,//底部导航都是定义的第一个路由中的所以他就是路由栈中最上面的一层
+    TitlePage: {//titlepage是bottom 的嵌套子页面，子路由
         screen: TitlePage,
         navigationOptions: {
             title: 'title的路由标题'
@@ -94,17 +96,27 @@ const TotalNavigator = createStackNavigator({//头部导航栏设定
     // NOTE: 其余路由在这里注册 
 
 })
-
+//SwitchNavigator 的用途是一次只显示一个页面。 默认情况下，它不处理返回操作，并在你切换时将路由重置为默认状态
+//这里将欢迎页与路由首页放在一起输出
 const RootNavigator = createSwitchNavigator({
     Init: InitNavigator,
     Total: TotalNavigator,
 })
-
+//第二种写法：
+// const RootNavigator = createSwitchNavigator({
+//     Init: {
+//         screen: WelcomePage,
+//         navigationOptions: {
+//             headerShown: false
+//         }
+//     },
+//     Total: TotalNavigator,
+// })
 
 const styles = StyleSheet.create({
     icon: {
         fontSize: 16,
     },
 });
-
-export default createAppContainer(RootNavigator)
+//App 容器负责管理应用的 state, 并将顶层的 navigator 链接到整个应用环境。
+export default createAppContainer(RootNavigator)// 使用react-navigation做路由管理，需要将我们的项目包裹在createAppContainer中

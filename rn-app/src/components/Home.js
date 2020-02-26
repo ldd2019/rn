@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, Button,ScrollView,Dimensions, Image} from 'react-native'
+import {View, Text, Button,ScrollView,Dimensions, Image,TouchableOpacity} from 'react-native'
 import {StyleSheet} from "react-native"
 import { AuthSession } from 'expo';
 import Swiper from 'react-native-swiper';
@@ -30,45 +30,45 @@ export default class Home extends React.Component{
                 </Swiper>
                 {/* <Text style={{color:'#41affc'}} onPress={()=> navigation.navigate('TitlePage')}>点我跳转titlePage详情</Text> */}
                 <View style={{height:160,margin:10,flexDirection: 'row',backgroundColor:"#e2eaee",borderRadius:10,overflow: 'hidden'}}>
-                    <View style={[styles.guider],{justifyContent:"center",alignItems:"center",flex:1, }}>
-                        <Image source={require('../img/预约挂号.png')} style={{height:40,width:40}}/>                        
-                        <Text style={{color:"#178a3d",fontSize:20,marginTop:20}}>挂号</Text>
+                    <View onPress={()=> navigation.navigate('TitlePage')} style={[styles.guider],{justifyContent:"center",alignItems:"center",flex:1, backgroundColor:"#e0f0f8",}}>
+                        <Image source={require('../img/_挂号.png')} style={{height:40,width:40}}/>                        
+                        <Text style={{color:"#0075a9",fontSize:20,marginTop:20}}>挂号</Text>
                     </View>
                     <View style={[styles.variety]}>
-                        <View style={[styles.variety_1]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:20,width:20}}/>
-                            <Text style={[styles.textstyle]}>根据科室</Text>
-                        </View>
-                        <View style={[styles.variety_1]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:40,width:40,}}/>
+                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> navigation.navigate('TitlePage')}>
+                                <Image source={require('../img/科室.png')} style={{height:24,width:24,marginRight:20}}/>
+                                <Text style={[styles.textstyle]} >根据科室</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> navigation.navigate('TitlePage')}>
+                            <Image source={require('../img/病史.png')} style={{height:24,width:24,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>根据疾病</Text>
-                        </View>
-                        <View style={[styles.variety_1]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:40,width:40,}}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> navigation.navigate('TitlePage')}> 
+                            <Image source={require('../img/头痛.png')} style={{height:24,width:24,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>根据症状</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={{height:150,margin:10,marginTop:10,flexDirection: 'row',backgroundColor:"#e2eaee",borderRadius:10,overflow: 'hidden'}}>
                     <View style={{flex:1}}>
-                        <View style={[styles.variety_1,{margin:5}]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:40,width:40,}}/>
+                        <TouchableOpacity style={[styles.variety_2,{margin:5}]}>
+                            <Image source={require('../img/症状自查.png')} style={{height:26,width:26,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>症状查询</Text>
-                        </View>
-                        <View style={[styles.variety_1,{margin:5}]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:40,width:40,}}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.variety_2,{margin:5}]}>
+                            <Image source={require('../img/疾病.png')} style={{height:26,width:26,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>疾病查询</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={{flex:1}}>
-                        <View style={[styles.variety_1,{marginTop:5,marginRight:5}]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:40,width:40,}}/>
+                        <TouchableOpacity style={[styles.variety_2,{marginTop:5,marginRight:5}]}>
+                            <Image source={require('../img/管理科室.png')} style={{height:26,width:26,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>专科介绍</Text>
-                        </View>
-                        <View style={[styles.variety_1,{marginTop:5,marginRight:5}]}>
-                            <Image source={require('../img/预约挂号.png')} style={{height:40,width:40,}}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.variety_2,{marginTop:5,marginRight:5}]}>
+                            <Image source={require('../img/医生.png')} style={{height:26,width:26,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>医生介绍</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -103,16 +103,25 @@ const styles = StyleSheet.create({
     variety_1:{
         flex:1,
         borderRadius:5,
+        marginTop:5,
+        backgroundColor:"#e0f0f8",
+        justifyContent:"center",
+        flexDirection: "row",//使得文字图片横向排列
+        alignItems:'center'//使得文字和图片中心点在同一水平线上
+    },
+    variety_2:{
+        flex:1,
+        borderRadius:5,
         marginBottom:5,
-        backgroundColor:"#d5e5f8",
+        backgroundColor:"#e0f0f8",
+        justifyContent:"center",
         flexDirection: "row",//使得文字图片横向排列
         alignItems:'center'//使得文字和图片中心点在同一水平线上
     },
     textstyle:{
-        color:"#5b656a",
+        color:"#0075a9",
         fontSize:20
-    }
-
+    },
 
 });
 
