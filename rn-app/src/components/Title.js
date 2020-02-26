@@ -8,8 +8,9 @@ const { width } = Dimensions.get('window');//用于获取屏幕设备的宽高
 export default class Home extends React.Component {
     constructor(props) {//？？
         super(props)//??
+        const activeIndex = props.navigation.getParam('activeIndex') || 0
         this.state = {
-            activeIndex: 0,
+            activeIndex: activeIndex,
             roomList_index:0,
             tabList: ['按科室', '按疾病','按症状'],
             roomList: ["内科","外科","骨外科","口腔科学","眼科学","妇产科","儿科学","耳鼻咽喉科","传染病科","皮肤性病科"],

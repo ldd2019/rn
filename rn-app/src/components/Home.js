@@ -35,15 +35,15 @@ export default class Home extends React.Component{
                         <Text style={{color:"#0075a9",fontSize:20,marginTop:20}}>挂号</Text>
                     </View>
                     <View style={[styles.variety]}>
-                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {this.navigation.navigate('TitlePage',{id:"room"})}}>
+                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:0})}}>
                                 <Image source={require('../img/科室.png')} style={{height:24,width:24,marginRight:20}}/>
                                 <Text style={[styles.textstyle]} >根据科室</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {this.navigation.navigate('TitlePage',{id:"disease"})}}>
+                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:1})}}>
                             <Image source={require('../img/病史.png')} style={{height:24,width:24,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>根据疾病</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {this.navigation.navigate('TitlePage',{id:"symptom"})}}> 
+                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:2})}}> 
                             <Image source={require('../img/头痛.png')} style={{height:24,width:24,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>根据症状</Text>
                         </TouchableOpacity>
