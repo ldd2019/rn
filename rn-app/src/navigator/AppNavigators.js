@@ -89,7 +89,11 @@ const TotalNavigator = createStackNavigator({//头部导航栏设定
     TitlePage: {//titlepage是bottom 的嵌套子页面，子路由
         screen: TitlePage,
         navigationOptions: {
-            title: 'title的路由标题'
+            title: '挂号',
+            headerTintColor: '#fff',//标题字体颜色
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
             // header: null
         }
     },

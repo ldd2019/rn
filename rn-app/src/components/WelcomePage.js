@@ -40,9 +40,6 @@ export default class WelcomePage extends React.Component {
                 <Text>欢迎欢迎</Text>
                 <Text>欢迎欢迎</Text>
                 <Text>欢迎欢迎</Text>
-                <Text>欢迎欢迎</Text>
-                <Text>欢迎欢迎</Text>
-                <Text>欢迎欢迎</Text>
                 <Text style={{position:'absolute', top: 40, right: 10}}>{time}</Text>
             </View>
         );
