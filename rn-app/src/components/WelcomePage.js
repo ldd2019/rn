@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground,Dimensions} from 'react-native';
 
-
+const { width,height } = Dimensions.get('window');//用于获取屏幕设备的宽高
 //  欢迎页面
 export default class WelcomePage extends React.Component {
     constructor(props) {
@@ -35,13 +35,12 @@ export default class WelcomePage extends React.Component {
     render() {
         const {time} = this.state
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>WelcomePage Screen</Text>
-                <Text>欢迎欢迎</Text>
-                <Text>欢迎欢迎</Text>
-                <Text>欢迎欢迎</Text>
-                <Text style={{position:'absolute', top: 40, right: 10}}>{time}</Text>
-            </View>
+            <ImageBackground source={require('../img/pig.jpg')} style={{height:height,width:width}}>
+                <View style={{ flex: 1, }}>
+                    <Text style={{fontSize:30,paddingTop:150,textAlign:'center',color:"#fff"}}>欢迎欢迎</Text>
+                    <Text style={{position:'absolute', top: 40, right: 30,color:"#fff"}}>{time}</Text>
+                </View>
+            </ImageBackground>
         );
     }
 }

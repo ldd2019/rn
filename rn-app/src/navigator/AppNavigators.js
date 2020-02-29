@@ -10,7 +10,9 @@ import Home from "../components/Home";
 import My from "../components/My";
 import TitlePage from "../components/Title"
 import WelcomePage from "../components/WelcomePage"
+import NewsPage from "../components/News_detail"
 
+const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 56;
 const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
     {
         Home: {
@@ -25,7 +27,7 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
         News: {
             screen: News,
             navigationOptions: {
-                title: "消息",
+                title: "动态",
                 tabBarIcon: ({ focused, horizontal, tintColor }) => {
                     return <FontAwesome5 name={'comment-alt'} style={[{ color: tintColor }, styles.icon]} />
                 }
@@ -45,7 +47,7 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
         tabBarOptions: {
             activeTintColor: "#83a7f9",
             style: {
-                height: 45
+                height: 50
             }
         },
     }
@@ -54,7 +56,6 @@ const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
 BottomNavigator.navigationOptions = ({ navigation }) => {
     const { routeName } = navigation.state.routes[navigation.state.index];
     // You can do whatever you like here to pick the title based on the route name
-
     if (routeName === 'Home') {
         return {
             title: '智能导诊',
@@ -63,9 +64,31 @@ BottomNavigator.navigationOptions = ({ navigation }) => {
                 backgroundColor: '#83a7f9',
             },
         }
-    } else {
+    } else if(routeName === 'News'){
         return {
-            title: routeName,
+            title: '动态',
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+                color : '#fff',
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+              },
+            headerStyle: {
+                backgroundColor: '#83a7f9',
+            },
+            // header: null,
+        }
+    }else {
+        return {
+            title: '',
+            headerTintColor: '#fff',
+            headerStyle: {
+                backgroundColor: '#f2f2f2',
+            },
             // header: null,
         }
     }
@@ -84,6 +107,7 @@ const InitNavigator = createStackNavigator({
 //键值对 前面就是路由的名字 后面是这个路由下的组件和其他配置信息
 //因为只有第一个注册的路由是没有返回键的 其他后面不管第二还是第三的路由 顺序都是有返回键的
 //所以titlepage有返回键
+
 const TotalNavigator = createStackNavigator({//头部导航栏设定
     Main: BottomNavigator,//底部导航都是定义的第一个路由中的所以他就是路由栈中最上面的一层
     TitlePage: {//titlepage是bottom 的嵌套子页面，子路由
@@ -91,6 +115,26 @@ const TotalNavigator = createStackNavigator({//头部导航栏设定
         navigationOptions: {
             title: '挂号',
             headerTintColor: '#fff',//标题字体颜色
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
+            // header: null
+        }
+    },
+    NewsPage : {
+        screen : NewsPage,
+        navigationOptions: {
+            title: '消息',
+            headerTintColor: '#fff',//返回按钮，跟标题字体颜色
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+            },
             headerStyle: {//标题模块的样式
                 backgroundColor: '#83a7f9',
             },
