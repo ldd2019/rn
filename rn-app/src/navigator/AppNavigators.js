@@ -11,6 +11,11 @@ import My from "../components/My";
 import TitlePage from "../components/Title"
 import WelcomePage from "../components/WelcomePage"
 import NewsPage from "../components/News_detail"
+import Regpage from "../components/MyReg"
+import RoomReg from "../components/RoomReg"
+import DocReg from "../components/docReg"
+import Login from "../login/login"
+import Sign_out from '../components/sign_out'
 
 const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 56;
 const BottomNavigator = createBottomTabNavigator(//屏幕下方导航栏
@@ -80,16 +85,17 @@ BottomNavigator.navigationOptions = ({ navigation }) => {
             headerStyle: {
                 backgroundColor: '#83a7f9',
             },
-            // header: null,
+            // headerShown: false
         }
     }else {
         return {
-            title: '',
-            headerTintColor: '#fff',
-            headerStyle: {
-                backgroundColor: '#f2f2f2',
-            },
-            // header: null,
+            // title: '我的',
+            // headerTintColor: '#fff',
+            // headerStyle: {
+            //     backgroundColor: '#83a7f9',
+            // },
+            headerShown: false,//将头部标题设为空，则不占用块
+            //或者headerShown:false   新版本的属性
         }
     }
 
@@ -118,7 +124,7 @@ const TotalNavigator = createStackNavigator({//头部导航栏设定
             headerStyle: {//标题模块的样式
                 backgroundColor: '#83a7f9',
             },
-            // header: null
+            // headerShown: false
         }
     },
     NewsPage : {
@@ -138,7 +144,102 @@ const TotalNavigator = createStackNavigator({//头部导航栏设定
             headerStyle: {//标题模块的样式
                 backgroundColor: '#83a7f9',
             },
-            // header: null
+            // headerShown: false
+        }
+    },
+    Regpage : {
+        screen : Regpage,
+        navigationOptions : {
+            title: '挂号信息',
+            headerTintColor: '#fff',//返回按钮，跟标题字体颜色
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+            },
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
+        }
+    },
+    RoomReg : {
+        screen : RoomReg,
+        navigationOptions : {
+            title: ' ',
+            headerTintColor: '#fff',//返回按钮，跟标题字体颜色
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+            },
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
+        }
+    },
+    DocReg : {
+        screen : DocReg,
+        navigationOptions : {
+            title: '预约时间',
+            headerTintColor: '#fff',//返回按钮，跟标题字体颜色
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+            },
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
+        }
+    },
+    Login : {
+        screen : Login,
+        navigationOptions : {
+            title: 'login',
+            headerTintColor: '#fff',//返回按钮，跟标题字体颜色
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+            },
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
+        }
+    },
+    Sign_out : {
+        screen : Sign_out,
+        navigationOptions : {
+            title: '设置',
+            headerTintColor: '#fff',//返回按钮，跟标题字体颜色
+            headerTitleStyle :{
+                alignSelf: 'center',
+                textAlign: 'center',
+                flex: 1,
+            },
+            headerTitleContainerStyle: {
+                left: TITLE_OFFSET,
+                right: TITLE_OFFSET,               
+            },
+            headerStyle: {//标题模块的样式
+                backgroundColor: '#83a7f9',
+            },
         }
     },
     // NOTE: 其余路由在这里注册 

@@ -1,18 +1,23 @@
 import React from 'react'
-import {View, Text, Button, Image, TouchableOpacity,ScrollView} from 'react-native'
+import {View, Text, Button, Image, TouchableOpacity,ScrollView, AsyncStorage} from 'react-native'
 import {StyleSheet} from "react-native"
 
 
 export default class Detail extends React.Component{
+
+    signOut(){
+        AsyncStorage.clear();
+        const {navigation} = this.props
+        navigation.navigate('Login')
+    }
+
     render(){
         const {navigation} = this.props
         return (
             <ScrollView style={{backgroundColor : "#fff"}}>
-                <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('NewsPage')} style={[styles.News_item]}>
-                    <Image source={require('../img/新闻.png')} style={{height:40,width:40,}}/>
+                <TouchableOpacity activeOpacity={1} onPress={() => this.signOut()} style={[styles.News_item]}>
                     <View style={{flex: 1}}>
-                        <Text style={[styles.News_text_1]}>云消息</Text>
-                        <Text style={[styles.News_text_2]}>暂无新的通知</Text>
+                        <Text style={[styles.News_text_1]}>退出登录</Text>
                     </View>
                 </TouchableOpacity>
             </ScrollView>
@@ -29,8 +34,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#e0f0f8'
     },
     News_text_1 : {
-        color : '#0075a9',
-        paddingTop : 8,
+        color : '#f44',
+        paddingTop : 18,
         paddingLeft : 20,
         fontSize : 20,
         flex : 1

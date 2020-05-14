@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Button, ScrollView, Dimensions, Image, TouchableOpacity } from 'react-native'
 import { StyleSheet } from "react-native"
+import HttpUtils from '../utils/request';
 
 
 const { width,height } = Dimensions.get('window');//用于获取屏幕设备的宽高
@@ -9,53 +10,22 @@ export default class Home extends React.Component {
     constructor(props) {//？？
         super(props)//??
         const activeIndex = props.navigation.getParam('activeIndex') || 0
-        this.state = {
+        this.state = {//初始化
             activeIndex: activeIndex,//将Home页面的activeIndex传递过来
             roomList_index:0,
             tabList: ['按科室', '按疾病','按症状'],
-            // roomList: [{"热门科室":["小儿外科","普外科","产科"]},{"内科":[]},"外科","骨外科","口腔科学","眼科学","妇产科","儿科学","耳鼻咽喉科","传染病科","皮肤性病科"],
-            roomList:[{'name':'热门科室',
-                       'detail':['小儿外科','普外科','产科']
-                    },{
-                        'name':'内科',
-                        'detail':['心血管内科','神经内科','消化内科','免疫科','呼吸科','普通内科']
-                    },{
-                        'name':'外科',
-                        'detail':['胸外科','整形科','乳腺外科','肛肠科','微创外科','普外科']
-                    },{
-                        'name':'骨外科',
-                        'detail':['骨科','脊柱外科','手外科','创伤骨外科','骨关节科','矫正骨科']
-                    },{
-                        'name':'口腔科学',
-                        'detail':['口腔科','牙周科','口腔修复科','种植科','口腔预防科','口腔急诊科']
-                    },{
-                        'name':'眼科学',
-                        'detail':['眼科','小儿眼科','青光眼','眼整形','眼外伤','白内障']
-                    },{
-                        'name':'妇产科',
-                        'detail':['妇科','产科','计划生育科']
-                    },{
-                        'name':'儿科学',
-                        'detail':['新生儿科','小儿呼吸科','小儿心内科','小儿内分泌科','小儿皮肤科','小儿骨科']
-                    },{
-                        'name':'耳鼻咽喉科',
-                        'detail':['耳鼻喉科','头颈外科']
-                    },{
-                        'name':'传染病科',
-                        'detail':['肝病科','传染科','艾滋病科']
-                    },{
-                        'name':'皮肤性病科',
-                        'detail':['皮肤病科','性病科']
-                    },{
-                        'name':'其他科室',
-                        'detail':['急诊科','检验科','体检科','功能检查科']
-                    }
-                     ],
-            diseaseList:[]
-//{"热门科室":["小儿外科","普外科","产科"]},
+            roomList:[],
         }
     }
 
+    componentDidMount(){
+        HttpUtils.get('register/department').then((data) =>{
+            this.setState({
+                roomList: data.data,
+            })
+            
+        })
+    }
 
     handleTab = (index) => {
         this.setState({
@@ -70,7 +40,10 @@ export default class Home extends React.Component {
     }
 
     render() {
-        const {tabList, activeIndex,roomList,roomList_index} = this.state
+        
+        const {tabList, activeIndex,roomList,roomList_index} = this.state//取值
+        const {navigation} = this.props
+        // console.log('roomList',roomList[roomList_index])
         return (
             <View>
                 
@@ -112,14 +85,15 @@ export default class Home extends React.Component {
                             <ScrollView style={{flex:1,height:height-128,}} showsVerticalScrollIndicator = {false}>
                                 <View >
                                     {
-                                        roomList[roomList_index].detail.map((item_detail,index_detail) => {
+                                        roomList[roomList_index]  && roomList[roomList_index].details ? roomList[roomList_index].details.map((item_detail,index_detail) => {
                                             return (
-                                                <TouchableOpacity key={`key_${index_detail}`} activeOpacity={0.8} style={[styles.roomList_item_right]}>
-                                                    <Text style={[styles.roomList_detail_text]}> {item_detail}</Text>
+                                                <TouchableOpacity key={`key_${index_detail}`} activeOpacity={0.8} style={[styles.roomList_item_right]}
+                                                 onPress ={() => {navigation.navigate('RoomReg',{Reg_Index:item_detail.key})}}>
+                                                    <Text style={[styles.roomList_detail_text]}> {item_detail.details}</Text>
                                                 </TouchableOpacity>
                                             )
                                             
-                                        })
+                                        }):null 
                                     }
                                 </View>
                         </ScrollView>
@@ -148,14 +122,15 @@ export default class Home extends React.Component {
                             <ScrollView style={{flex:1,height:height-128,}} showsVerticalScrollIndicator = {false}>
                                 <View >
                                     {
-                                        roomList[roomList_index].detail.map((item_detail,index_detail) => {
+                                        roomList[roomList_index]  && roomList[roomList_index].details ? roomList[roomList_index].details.map((item_detail,index_detail) => {
                                             return (
-                                                <TouchableOpacity key={`key_${index_detail}`} activeOpacity={0.8} style={[styles.roomList_item_right]}>
-                                                    <Text style={[styles.roomList_detail_text]}> {item_detail}</Text>
+                                                <TouchableOpacity key={`key_${index_detail}`} activeOpacity={0.8} style={[styles.roomList_item_right]}
+                                                 onPress ={() => {navigation.navigate('RoomReg',{Reg_Index:index_detail})}}>
+                                                    <Text style={[styles.roomList_detail_text]}> {item_detail.details}</Text>
                                                 </TouchableOpacity>
                                             )
                                             
-                                        })
+                                        }):null 
                                     }
                                 </View>
                             </ScrollView>
@@ -182,14 +157,15 @@ export default class Home extends React.Component {
                             <ScrollView style={{flex:1,height:height,}} showsVerticalScrollIndicator = {false}>
                                 <View >
                                     {
-                                        roomList[roomList_index].detail.map((item_detail,index_detail) => {
+                                        roomList[roomList_index]  && roomList[roomList_index].details ? roomList[roomList_index].details.map((item_detail,index_detail) => {
                                             return (
-                                                <TouchableOpacity key={`key_${index_detail}`} activeOpacity={0.9} style={[styles.roomList_item_right]}>
-                                                    <Text style={[styles.roomList_detail_text]}> {item_detail}</Text>
+                                                <TouchableOpacity key={`key_${index_detail}`} activeOpacity={0.8} style={[styles.roomList_item_right]}
+                                                 onPress ={() => {navigation.navigate('RoomReg',{Reg_Index:index_detail})}}>
+                                                    <Text style={[styles.roomList_detail_text]}> {item_detail.details}</Text>
                                                 </TouchableOpacity>
                                             )
                                             
-                                        })
+                                        }):null 
                                     }
                                 </View>
                             </ScrollView>

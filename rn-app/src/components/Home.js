@@ -11,7 +11,7 @@ export default class Home extends React.Component{
     render(){
         const {navigation} = this.props
         return (
-            <ScrollView>
+            <ScrollView style={{backgroundColor : "#fff"}}>
             <View>
                 {/* <Text style={[styles.title]}>吉大一院</Text> */}
                 <Swiper
@@ -29,33 +29,33 @@ export default class Home extends React.Component{
                     <Image source={require('../img/4.jpg')} style={styles.img}/>
                 </Swiper>
                 {/* <Text style={{color:'#41affc'}} onPress={()=> navigation.navigate('TitlePage')}>点我跳转titlePage详情</Text> */}
-                <View style={{height:160,margin:10,flexDirection: 'row',backgroundColor:"#e2eaee",borderRadius:10,overflow: 'hidden'}}>
-                    <View onPress={()=> navigation.navigate('TitlePage')} style={[styles.guider],{justifyContent:"center",alignItems:"center",flex:1, backgroundColor:"#e0f0f8",}}>
+                <View style={{height:160,margin:10,flexDirection: 'row',backgroundColor:"#fff",overflow: 'hidden'}}>
+                    <View   onPress={()=> navigation.navigate('TitlePage')} style={[styles.guider],{justifyContent:"center",borderRadius:10,alignItems:"center",flex:1, backgroundColor:"#e0f0f8",}}>
                         <Image source={require('../img/_挂号.png')} style={{height:40,width:40}}/>                        
                         <Text style={{color:"#0075a9",fontSize:20,marginTop:20}}>挂号</Text>
                     </View>
                     <View style={[styles.variety]}>
-                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:0})}}>
-                                <Image source={require('../img/科室.png')} style={{height:24,width:24,marginRight:20}}/>
+                        <TouchableOpacity activeOpacity={0.9} style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:0})}}>
+                                <Image source={require('../img/科室.png')} style={{height:24,width:24,marginRight:20,}}/>
                                 <Text style={[styles.textstyle]} >根据科室</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:1})}}>
+                        <TouchableOpacity activeOpacity={0.9} style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:1})}}>
                             <Image source={require('../img/病史.png')} style={{height:24,width:24,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>根据疾病</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:2})}}> 
+                        <TouchableOpacity activeOpacity={0.9} style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:2})}}> 
                             <Image source={require('../img/头痛.png')} style={{height:24,width:24,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>根据症状</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{height:150,margin:10,marginTop:10,flexDirection: 'row',backgroundColor:"#e2eaee",borderRadius:10,overflow: 'hidden'}}>
+                <View style={{height:150,margin:5,marginTop:5,flexDirection: 'row',backgroundColor:"#fff",borderRadius:10,overflow: 'hidden'}}>
                     <View style={{flex:1}}>
-                        <TouchableOpacity style={[styles.variety_2,{margin:5}]}>
+                        <TouchableOpacity style={[styles.variety_2,{marginTop:5,marginRight:5,marginLeft : 5,}]}>
                             <Image source={require('../img/症状自查.png')} style={{height:26,width:26,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>症状查询</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.variety_2,{margin:5}]}>
+                        <TouchableOpacity style={[styles.variety_2,{marginTop:5,marginRight:5,marginLeft : 5,}]}>
                             <Image source={require('../img/疾病.png')} style={{height:26,width:26,marginRight:20}}/>
                             <Text style={[styles.textstyle]}>疾病查询</Text>
                         </TouchableOpacity>
@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     },
     variety:{
         flex:3,
-        backgroundColor:"#e2eaee",
-        margin:5,
+        backgroundColor:"#fff",
+        marginLeft : 5,
         borderRadius:5,
         overflow: 'hidden',//溢出隐藏，加borderradius时，圆框未显示出来，
         shadowColor:"#e0f0f8"
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     variety_1:{
         flex:1,
         borderRadius:5,
-        marginTop:5,
+        marginTop:3,
         backgroundColor:"#e0f0f8",
         justifyContent:"center",
         flexDirection: "row",//使得文字图片横向排列
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     variety_2:{
         flex:1,
         borderRadius:5,
-        marginBottom:5,
+        // marginBottom:5,
         backgroundColor:"#e0f0f8",
         justifyContent:"center",
         flexDirection: "row",//使得文字图片横向排列
