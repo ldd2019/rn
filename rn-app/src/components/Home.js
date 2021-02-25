@@ -36,7 +36,7 @@ export default class Home extends React.Component{
                     </View>
                     <View style={[styles.variety]}>
                         {/* 下面这三段可以做一个循环处理，根据科室这三项在data内部做初始化数据，动态引入页面，样式不应该写行内样式，index传递可以根据循环的index来传，只需要一个标签即可完成 */}
-                        {/* 图片命名尽量不要用中文 */}
+                        {/* 图片命名尽量不要用中文 可能解析会出问题*/}
                         <TouchableOpacity activeOpacity={0.9} style={[styles.variety_1]} onPress={()=> {navigation.navigate('TitlePage',{activeIndex:0})}}>
                                 <Image source={require('../img/科室.png')} style={{height:24,width:24,marginRight:20,}}/>
                                 <Text style={[styles.textstyle]} >根据科室</Text>
